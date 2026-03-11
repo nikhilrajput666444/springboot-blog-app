@@ -105,39 +105,26 @@ http://localhost:8080
 
 ---
 
-##  Application Screenshorts
-
 ### Home Page
-![Home Page](screenshorts/Homee.png)
+![Home Page](06_spring%20boot%20blog%20project%20source%20code/myblogapp/screenshorts/Homee.png)
 
 ### Login Page
-![Login Page](screenshorts/loginn.png)
+![Login Page](06_spring%20boot%20blog%20project%20source%20code/myblogapp/screenshorts/loginn.png)
 
 ### Create Blog Post Page
-![Create Post](screenshorts/addpost.png)
+![Create Post](06_spring%20boot%20blog%20project%20source%20code/myblogapp/screenshorts/addpost.png)
 
-### signup page 
-![signup page](screenshorts/signup.png)
+### signup page
+![signup_page](06_spring%20boot%20blog%20project%20source%20code/myblogapp/screenshorts/signup.png)
 
-### add post category 
-![add post category](screenshorts/addpostcategory.png)
+### add post category
+![add_post_category](06_spring%20boot%20blog%20project%20source%20code/myblogapp/screenshorts/addpostcategory.png)
 
-#admin login page 
-![admin login page](screenshorts/adminlogin.png)
+### admin login page
+![admin_login_page](06_spring%20boot%20blog%20project%20source%20code/myblogapp/screenshorts/adminlogin.png)
 
-# all post  page 
-![all post ](screenshorts/allpost.png)
-
-# guest   page 
-![guest page ](screenshorts/guestlogin.png)
-
-# search by category page 
-![search by category page ](screenshorts/searchbycategory.png)
-
-# view all comments page 
-![viewall comments ](screenshorts/viewallcomments.png)
-
-
+### all post page
+![all_post_](06_spring%20boot%20blog%20project%20source%20code/myblogapp/screenshorts/allpost.png)
 
 
 
