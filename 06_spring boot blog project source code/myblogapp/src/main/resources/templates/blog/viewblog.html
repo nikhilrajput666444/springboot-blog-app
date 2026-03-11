@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{baseui::mybaselayout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+
+		<div class="container">
+
+			<div class="row">
+
+
+				<div class="col-md-10 offset-md-1">
+
+					<div class="card my-2">
+						<div class="card-body">
+
+							<img
+								th:src="@{'/postfiles/'+${post.id}+'/'+${post.postImageName}}">
+							<h5 class="card-title text-center" th:text=${post.title}>Card
+								title</h5>
+							<p class="card-text" th:utext=${post.content}></p>
+
+
+
+
+							<div class="card">
+								<div class="card-body"
+									th:text="${#temporals.format(post.createdOn,'dd-MMM-yyyy HH:mm a')}">
+									This is some text within a card body.</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+
+				<!-- show comment section starts -->
+				<div class="col-md-10 offset-md-1">
+
+					<div class="card">
+						<div class="card-header">comment( <span th:text="${#lists.size(comments)}"></span> )</div>
+						<div class="card-body">
+						
+						<div th:each="c:${comments}" class="mb-3 border-bottom pb-2">
+						<p th:text="${c.commentMsg}"></p> <small th:text=${c.name}></small>
+						<small th:text=${c.email}></small>
+						<small th:text="${#temporals.format(c.createdOn,'dd-MMM-yyyy HH:mm a')}"></small>
+						</div>
+							
+						</div>
+
+					</div>
+				</div>
+				<!-- 	show comments section ends -->
+
+				<!-- comment section starts -->
+				<div class="col-md-10 offset-md-1">
+
+					<div class="card my-2">
+						<div class="card-body">
+							<h4>ADD Comment</h4>
+							<!-- form started -->
+
+							<form th:action="@{/addcomment}" method="post" th:object="${comment}">
+
+								<input type="hidden" name="postId" th:value="${post.id}" />
+								
+								<input type="hidden" name="url" th:value="${post.url}" />
+
+								<div class="mb-3">
+									<label for="pt" class="form-label">Name</label> <input
+										type="text" th:field="*{name}" class="form-control" id="pt"
+										aria-describedby="emailHelp">
+									<div class="text-danger" th:if="${#fields.hasErrors('name')}">
+										<span th:errors="*{name}"></span>
+									</div>
+
+								</div>
+
+								<div class="mb-3">
+									<label for="pt" class="form-label">Email</label> <input
+										type="text" th:field="*{email}" class="form-control" id="pt"
+										aria-describedby="emailHelp">
+									<div class="text-danger" th:if="${#fields.hasErrors('email')}">
+										<span th:errors="*{email}"></span>
+									</div>
+								</div>
+
+
+								<div class="form-floating">
+									<label for="floatingTextarea">Comments</label>
+									<textarea th:field="*{commentMsg}" class="form-control"
+										placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+									<div class="text-danger"
+										th:if="${#fields.hasErrors('commentMsg')}">
+										<span th:errors="*{commentMsg}"></span>
+									</div>
+								</div>
+
+
+
+
+
+
+								<button type="submit" class="btn btn-primary">add
+									comment</button>
+							</form>
+
+							<!-- form ended -->
+						</div>
+					</div>
+
+
+				</div>
+
+				<!-- comments section ends -->
+
+
+
+			</div>
+
+
+		</div>
+
+
+
+
+
+	</section>
+
+</body>
+</html>

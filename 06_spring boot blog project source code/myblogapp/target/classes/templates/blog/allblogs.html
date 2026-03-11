@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{baseui::mybaselayout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+</head>
+<body>
+
+	<section>
+
+		<div class="container-fluid  mt-3">
+
+
+			<div class="row">
+
+				<!-- side bar div column starts-->
+				<div class="col-md-3">
+					<!-- search field starts -->
+					<div class="card my-4">
+						<div class="card-body">
+
+							<form  th:action="@{/searchblogpost}"   class="form-inline my-2 " role="search">
+								<input class="form-control w-100 my-1" type="search" name="search"
+									placeholder="Search" aria-label="Search" />
+								<button class="btn btn-outline-success my-2" type="submit">Search</button>
+							</form>
+						</div>
+					</div>
+					<!-- search field ends -->
+
+					<hr>
+
+					<h5>Top Categories</h5>
+					<div class="list-group">
+						<ul class="list-group">
+							<li class="list-group-item ">
+							<a th:href="@{/}">ALL</a>
+							</li>
+						
+						
+							<li class="list-group-item " aria-current="true"
+								th:each="cat :${categories}">
+								
+								
+								<a th:href="@{'/category/'+${cat.id}}"
+								th:text="${cat.name}">A second link item</a></li>
+
+						</ul>
+					</div>
+
+
+				</div>
+
+
+				<!-- post card div column starts-->
+				<div class="col-md-9">
+
+					<div class="row m-2">
+					
+					<div th:if="${blogpage.totalPages==0}">
+					<h4>No Post Found</h4>
+					</div>
+
+						<div th:each="p:${blogpage.content}" class="col-md-6">
+							<div class="card my-4" style="height: 500px; min-height: 480px;overflow:hidden">
+								<img th:src="@{'/postfiles/'+${p.id}+'/'+${p.postImageName}}"
+									class="card-img-top" alt="...">
+								<div class="card-body">
+									<h5 class="card-title text-center">
+
+										<a th:href="@{'/blogpost/'+${p.id}+'/'+${p.url}}" th:text="${p.title}">A second link item</a>
+									</h5>
+
+									<p class="card-text " th:text="${p.shortDesc.length()>80}?${p.shortDesc.substring(0,80)+ '....'}:${p.shortDesc} "></p>
+									
+									<a th:href="@{'/blogpost/'+${p.id}+'/'+${p.url}}" >Read more..</a>
+								</div>
+								<div class="card-footer text-muted" th:text="${#temporals.format(p.createdOn,'dd-MMM-yyyy HH:mm a')}">
+									
+									</div>
+							</div>
+
+						</div>
+
+
+
+
+
+
+
+					</div>
+
+
+					<!--  pagination starts  -->
+					<div th:if="${blogpage.totalPages>0}">
+					<nav aria-label="Page navigation example ">
+						<ul class="pagination">
+							<li class="page-item" th:classappend="${!blogpage.hasPrevious}?'disabled':''">
+							<a class="page-link"	th:href="${selectedcategoryid != null} ? '/category/'+${selectedcategoryid}+'?pageNo='+${currentpage-1} : '/?pageNo='+${currentpage-1}"
+								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							</a></li>
+							
+							
+							
+							<li class="page-item" th:each="i:${#numbers.sequence(0,blogpage.totalPages-1)}">
+							<a class="page-link"
+							th:href="${selectedcategoryid != null} ? '/category/'+${selectedcategoryid}+'?pageNo='+${i} : '/?pageNo='+${i}" th:text="${i+1}">1</a>
+							</li>
+						
+
+							
+							
+							
+							
+							<li class="page-item" th:classappend="${!blogpage.hasNext}?'disabled':''"><a class="page-link"th:href="${selectedcategoryid != null} ? '/category/'+${selectedcategoryid}+'?pageNo='+${currentpage+1} : '/?pageNo='+${currentpage+1}"
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							</a></li>
+						</ul>
+					</nav>
+					<!-- pagination ends -->
+</div>
+				</div>
+
+
+			</div>
+
+		</div>
+
+
+
+
+
+
+	</section>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{baseui::mybaselayout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+
+		<div class="container">
+
+			<div class="row">
+
+
+				<div class="col-md-8 offset-md-2">
+
+					<h1>Signup</h1>
+					<div class="card">
+						<div class="card-body">
+
+							<!-- form started -->
+
+							<form th:action="@{/auth/saveuser}"  method="post" th:object="${user}">
+
+								<div class="mb-3">
+									<label for="pt" class="form-label">FirstName</label> <input
+										type="text" th:field="*{firstName}" class="form-control" id="pt"
+										aria-describedby="emailHelp">
+									<div class="text-danger" th:if="${#fields.hasErrors('firstName')}">
+										<span th:errors="*{firstName}"></span>
+									</div>
+								</div>
+
+
+								<div class="mb-3">
+									<label for="pt" class="form-label">LastName</label> <input
+										type="text" class="form-control" th:field="*{lastName}" id="pt"
+										aria-describedby="emailHelp">
+								<div class="text-danger" th:if="${#fields.hasErrors('lastName')}">
+										<span th:errors="*{lastName}"></span>
+									</div>
+								</div>
+
+
+
+								<div class="mb-3">
+									<label for="pt" class="form-label">Email</label> <input
+										type="text" class="form-control" th:field="*{email}" id="pt"
+										aria-describedby="emailHelp">
+									<div class="text-danger" th:if="${#fields.hasErrors('email')}">
+										<span th:errors="*{email}"></span>
+									</div>
+								</div>
+
+
+								<div class="mb-3">
+									<label for="pt" class="form-label">Password</label> <input
+										type="password" class="form-control"  th:field="*{password}"  id="pt"
+										aria-describedby="emailHelp">
+									<div class="text-danger" th:if="${#fields.hasErrors('password')}">
+										<span th:errors="*{password}"></span>
+									</div>
+								</div>
+
+
+
+
+
+
+								<button type="submit" class="btn btn-primary">Signup</button>
+							</form>
+
+							<!-- form ended -->
+
+							<div class="alert alert-success" th:if="${msg}" th:text="${msg}"
+								role="alert"></div>
+
+							<div class="alert alert-danger" th:if="${error}"
+								th:text="${error}" role="alert"></div>
+
+						</div>
+					</div>
+
+
+				</div>
+
+			</div>
+
+
+		</div>
+
+
+
+
+
+	</section>
+
+</body>
+</html>

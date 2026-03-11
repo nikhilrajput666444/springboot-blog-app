@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" th:replace="~{baseui::mybaselayout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<section>
+
+<div class="container-fluid mt-5">
+
+<div class="row">
+
+<div class="col-md-4">
+<div class="card mt-4 bg-info">
+  <div class="card-body text-center">
+   <a class="nav-link text-light " href="/post/allposts">All Posts</a>
+  </div>
+</div>
+
+</div>
+
+<div class="col-md-4">
+<div class="card mt-4 bg-info">
+  <div class="card-body text-center">
+   <a class="nav-link text-light" href="/post/newpost">Add Post</a>
+  </div>
+</div>
+
+</div>
+
+
+<div class="col-md-4">
+<div class="card mt-4 bg-info">
+  <div class="card-body text-center">
+   <a class="nav-link text-light" href="/admin/category/addcategory">Add Category</a>
+  </div>
+</div>
+
+</div>
+
+<div class="col-md-4">
+<div class="card mt-4 bg-info">
+  <div class="card-body text-center">
+   <a class="nav-link text-light" href="/post/admin/viewallcomments">All Comments</a>
+  </div>
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+</body>
+</html>

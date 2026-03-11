@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  th:fragment="mybaselayout(content)">
+<head>
+<meta charset="ISO-8859-1">
+<title >Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+
+<!-- navbar starts -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" th:href="@{/}">NikhilBlogApp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a sec:authorize="hasAuthority('ADMIN')"  class="nav-link" th:href="@{/dashboard/admin}">Admin </a>
+      </li>
+      <li class="nav-item">
+        <a  sec:authorize="hasAuthority('GUEST')" class="nav-link" th:href="@{/dashboard/guest}">Guest</a>
+      </li>
+      
+      
+      <li class="nav-item">
+        <a  sec:authorize="isAnonymous()"  class="nav-link" th:href="@{/auth/signup}">Signup</a>
+      </li>
+      
+        <li class="nav-item">
+        <a sec:authorize="isAnonymous()" class="nav-link" th:href="@{/auth/customlogin}">Login</a>
+      </li>
+      
+      
+       <li class="nav-item" sec:authorize="isAuthenticated()">
+      <form th:action="@{/logout}" method="post">
+      <input  class="btn btn-link text-white" type="submit" value="logout" />
+      </form>
+      </li>
+      
+      
+    </ul>
+  </div>
+</nav>
+<!-- navbar ends -->
+
+
+<!-- main body section starts -->
+
+<div th:replace="${content}"></div>
+
+<!-- main body section ends -->
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+	<!-- ck editor -->
+	<script
+		src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+	<script>
+	document.addEventListener("DOMContentLoaded", function () {
+	    // IDs of all textareas to turn into editors
+	    const editorIDs = ['shortDescEditor', 'contentEditor'];
+
+	    editorIDs.forEach(id => {
+	        const element = document.querySelector(`#${id}`);
+	        if (element) {
+	            ClassicEditor
+	                .create(element, {
+	                    toolbar: [
+	                        'bold', 'italic', 'underline', 'strikethrough',
+	                        'bulletedList', 'numberedList',
+	                        'heading', 'undo', 'redo'
+	                    ]
+	                })
+	                .catch(error => console.error(error));
+	        }
+	    });
+	});
+	</script>
+
+</body>
+</html>

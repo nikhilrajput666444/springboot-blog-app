@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{baseui::mybaselayout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+
+		<div class="container-fluid">
+
+			<div class="row">
+
+
+				<div class="col-12 ">
+
+					<div class="alert alert-success" th:if="${msg}" th:text="${msg}"
+						role="alert"></div>
+
+					<div class="alert alert-danger" th:if="${error}" th:text="${error}"
+						role="alert"></div>
+
+					<h1>All Comments</h1>
+
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col" style="width: 5%">SNO</th>
+								<th scope="col" style="width: 20%">Email</th>
+								<th scope="col" style="width: 35%">Comment</th>
+								<th scope="col" style="width: 15%">Commented On</th>
+								<th scope="col" style="width: 10%">Title</th>
+								<th scope="col" style="width: 15%">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr th:if="${commentPage.totalPages==0}">
+								<td colspan="6" class="text-center">No Post Content
+									Found!!!</td>
+							</tr>
+
+
+							<tr th:each="c,status : ${commentPage.content}">
+								<th scope="row" th:text="${status.count}">1</th>
+								<td th:text="${c.email}">Mark</td>
+
+								<td
+									th:utext="${c.commentMsg.length()>60}?${c.commentMsg.substring(0,60)+ '....'}:${c.commentMsg} ">Otto</td>
+
+								<td
+									th:text="${#temporals.format(c.createdOn,'dd-MMM-yyyy HH:mm a')}">@mdo</td>
+
+								<td th:text="${c.postTitle}">pending</td>
+
+
+								<td>
+
+								 <a
+									class="btn btn-danger"
+									th:href="@{'/post/admin/delete-comment/'+${c.id}}"
+									>Delete</a>
+							</tr>
+
+						</tbody>
+					</table>
+
+					<!-- 	pagination starts -->
+
+					<div th:if="${commentPage.totalPages>0}">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<li class="page-item "
+									th:classappend="${!commentPage.hasPrevious}?'disabled':''"><a
+									class="page-link"
+									 th:href="'/post/admin/viewallcomments?pageNo=' + ${currentPage-1}"
+									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								</a></li>
+
+
+
+								<li class="page-item"
+									th:each="i:${#numbers.sequence(0,commentPage.totalPages-1)}">
+									<a class="page-link" th:href="'/post/admin/viewallcomments?pageNo=' + ${i}"
+									th:text="${i+1}"></a>
+								</li>
+
+
+
+
+
+
+								<li class="page-item "
+									th:classappend="${!commentPage.hasNext}?'disabled':''"><a
+									class="page-link"
+									 th:href="'/post/admin/viewallcomments?pageNo=' + ${currentPage+1}"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a></li>
+							</ul>
+						</nav>
+					</div>
+
+
+
+					<!-- 	pagination ends -->
+
+
+				</div>
+
+			</div>
+
+
+		</div>
+
+
+
+
+
+	</section>
+
+</body>
+</html>

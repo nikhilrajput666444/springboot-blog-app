@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	th:replace="~{baseui::mybaselayout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+
+		<div class="container-fluid">
+
+			<div class="row">
+
+
+				<div class="col-12 ">
+
+					<div class="alert alert-success" th:if="${msg}" th:text="${msg}"
+						role="alert"></div>
+
+					<div class="alert alert-danger" th:if="${error}" th:text="${error}"
+						role="alert"></div>
+
+					<h1>All Posts</h1>
+
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col" style="width: 5%">SNO</th>
+								<th scope="col" style="width: 5%">Post Title</th>
+								<th scope="col" style="width: 25%">Short Desc</th>
+								<th scope="col" style="width: 10%">Posted On</th>
+								<th scope="col" style="width: 5%">Status</th>
+								<th scope="col" style="width: 45%">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr th:if="${postPage.totalPages==0}">
+								<td colspan="6" class="text-center">No Post Content
+									Found!!!</td>
+							</tr>
+
+
+							<tr th:each="p,status : ${postPage.content}">
+								<th scope="row" th:text="${status.count}">1</th>
+								<td th:text="${p.title}">Mark</td>
+
+								<td
+									th:utext="${p.shortDesc.length()>60}?${p.shortDesc.substring(0,60)+ '....'}:${p.shortDesc} ">Otto</td>
+
+								<td
+									th:text="${#temporals.format(p.createdOn,'dd-MMM-yyyy HH:mm a')}">@mdo</td>
+
+								<td th:text="${p.status}">pending</td>
+
+
+								<td>
+								
+								<a  sec:authorize="hasAuthority('ADMIN')"
+									th:if="${p.status=='PENDING' or p.status=='REJECTED'}"
+									class="btn btn-primary"
+									th:href="'/post/admin/approvePost?postId='+${p.id}">Approve</a>
+
+									<a  sec:authorize="hasAuthority('ADMIN')"  th:if="${p.status=='PENDING' or p.status=='APPROVED'}"
+									class="btn btn-warning"
+									th:href="'/post/admin/rejectPost?postId='+${p.id}">Reject</a> 
+									
+									
+									
+									
+									<a
+									class="btn btn-success"
+									th:href="'/post/editpostdata?postId='+${p.id}">Edit</a> <a
+									class="btn btn-danger"
+									th:href="'/post/deletepost?postId='+${p.id}">Delete</a> <a
+									class="btn btn-info"
+									th:href="'/post/viewpostdata?postId='+${p.id}">View</a></td>
+							</tr>
+
+						</tbody>
+					</table>
+
+					<!-- 	pagination starts -->
+
+					<div th:if="${postPage.totalPages>0}">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<li class="page-item "
+									th:classappend="${!postPage.hasPrevious}?'disabled':''"><a
+									class="page-link"
+									th:href="'/post/allposts?pageNo=' + ${currentpage-1}"
+									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								</a></li>
+
+
+
+								<li class="page-item"
+									th:each="i:${#numbers.sequence(0,postPage.totalPages-1)}">
+									<a class="page-link" th:href="'/post/allposts?pageNo=' + ${i}"
+									th:text="${i+1}"></a>
+								</li>
+
+
+
+
+
+
+								<li class="page-item "
+									th:classappend="${!postPage.hasNext}?'disabled':''"><a
+									class="page-link"
+									th:href="'/post/allposts?pageNo=' + ${currentpage+1}"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a></li>
+							</ul>
+						</nav>
+					</div>
+
+
+
+					<!-- 	pagination ends -->
+
+
+				</div>
+
+			</div>
+
+
+		</div>
+
+
+
+
+
+	</section>
+
+</body>
+</html>
