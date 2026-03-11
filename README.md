@@ -105,7 +105,7 @@ http://localhost:8080
 
 ---
 
-##  Application Screenshots
+##  Application Screenshorts
 
 ### Home Page
 ![Home Page](screenshorts/Homee.png)
