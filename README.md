@@ -108,34 +108,34 @@ http://localhost:8080
 ##  Application Screenshots
 
 ### Home Page
-![Home Page](screenshots/Homee.png)
+![Home Page](screenshorts/Homee.png)
 
 ### Login Page
-![Login Page](screenshots/loginn.png)
+![Login Page](screenshorts/loginn.png)
 
 ### Create Blog Post Page
-![Create Post](screenshots/addpost.png)
+![Create Post](screenshorts/addpost.png)
 
 ### signup page 
-![signup page](screenshort/signup.png)
+![signup page](screenshorts/signup.png)
 
 ### add post category 
-![add post category](screenshots/addpostcategory.png)
+![add post category](screenshorts/addpostcategory.png)
 
 #admin login page 
-![admin login page](screenshots/adminlogin.png)
+![admin login page](screenshorts/adminlogin.png)
 
 # all post  page 
-![all post ](screenshots/allpost.png)
+![all post ](screenshorts/allpost.png)
 
 # guest   page 
-![guest page ](screenshots/guestlogin.png)
+![guest page ](screenshorts/guestlogin.png)
 
 # search by category page 
-![search by category page ](screenshots/searchbycategory.png)
+![search by category page ](screenshorts/searchbycategory.png)
 
 # view all comments page 
-![viewall comments ](screenshots/viewallcomments.png)
+![viewall comments ](screenshorts/viewallcomments.png)
 
 
 
