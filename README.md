@@ -104,6 +104,7 @@ http://localhost:8080
 
 
 ---
+## Application Screenshots
 
 ### Home Page
 ![Home Page](06_spring%20boot%20blog%20project%20source%20code/myblogapp/screenshorts/Homee.png)
@@ -126,7 +127,15 @@ http://localhost:8080
 ### all post page
 ![all_post_](06_spring%20boot%20blog%20project%20source%20code/myblogapp/screenshorts/allpost.png)
 
+### search by category 
+![search_by_](06_spring%20boot%20blog%20project%20source%20code/myblogapp/screenshorts/searchbycategory.png)
 
+
+### guest login
+![guest_login_](06_spring%20boot%20blog%20project%20source%20code/myblogapp/screenshorts/guestlogin.png)
+
+### viewall comments 
+![view_comments_](06_spring%20boot%20blog%20project%20source%20code/myblogapp/screenshorts/viewallcomments.png)
 
 
 
